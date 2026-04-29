@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h3 class="mb-4 fw-semibold">Carrito</h3>
+
+{% if carrito|length > 0 %}
+
+<div class="d-flex flex-column gap-3">
+
+    {% for producto in carrito %}
+    <div class="glass p-3 d-flex justify-content-between align-items-center">
+
+        <div>
+            <div class="fw-medium">{{ producto.nombre }}</div>
+            <small class="text-secondary">$ {{ producto.precio }}</small>
+        </div>
+
+        <a href="/eliminar/{{ loop.index0 }}"
+           class="btn btn-outline-danger btn-modern btn-sm">
+           ✕
+        </a>
+
+    </div>
+    {% endfor %}
+
+</div>
+
+<div class="mt-4 d-flex justify-content-between align-items-center">
+    <h5 class="fw-semibold text-success">Total: ${{ total }}</h5>
+
+    <a href="/" class="btn btn-light btn-modern">
+        Seguir comprando
+    </a>
+</div>
+
+{% else %}
+
+<div class="text-center py-5">
+    <p class="text-secondary">Tu carrito está vacío</p>
+    <a href="/" class="btn btn-light btn-modern">
+        Explorar productos
+    </a>
+</div>
+
+{% endif %}
+{% endblock %}
